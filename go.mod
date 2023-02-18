@@ -2,7 +2,10 @@ module zerotomastery.io/pixl
 
 go 1.19
 
-require fyne.io/fyne/v2 v2.3.1
+require (
+	fyne.io/fyne/v2 v2.3.1
+	github.com/lusingander/colorpicker v0.7.1
+)
 
 require (
 	fyne.io/systray v1.10.1-0.20230207085535-4a244dbb9d03 // indirect

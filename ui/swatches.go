@@ -11,8 +11,8 @@ import (
 func BuildSwatches(app *AppInit) *fyne.Container {
 	canvasSwatches := make([]fyne.CanvasObject, 0, 64)
 	for i := 0; i < cap(app.Swatches); i++ {
-		initalColor := color.NRGBA{255, 255, 255, 255}
-		s := swatch.NewSwatch(app.state, initalColor, i, func(s *swatch.Swatch) {
+		initialColor := color.NRGBA{255, 255, 255, 255}
+		s := swatch.NewSwatch(app.State, initialColor, i, func(s *swatch.Swatch) {
 			for j := 0; j < len(app.Swatches); j++ {
 				app.Swatches[j].Selected = false
 				canvasSwatches[j].Refresh()
@@ -28,5 +28,6 @@ func BuildSwatches(app *AppInit) *fyne.Container {
 		app.Swatches = append(app.Swatches, s)
 		canvasSwatches = append(canvasSwatches, s)
 	}
+
 	return container.NewGridWrap(fyne.NewSize(20, 20), canvasSwatches...)
 }
