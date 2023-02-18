@@ -6,7 +6,6 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/widget"
-	"zerotomastery.io/pixl/apptype"
 )
 
 type Swatch struct {
@@ -22,7 +21,7 @@ func (s *Swatch) SetColor(c color.Color) {
 	s.Refresh()
 }
 
-func NewSwatch(state *apptype.State, color color.Color, swatchIndex int, clickHandler func(s *Swatch)) *Swatch {
+func NewSwatch(color color.Color, swatchIndex int, clickHandler func(s *Swatch)) *Swatch {
 	swatch := &Swatch{
 		Selected:     false,
 		Color:        color,
