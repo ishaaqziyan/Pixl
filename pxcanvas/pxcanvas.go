@@ -6,6 +6,7 @@ import (
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
+	"fyne.io/fyne/v2/driver/desktop"
 	"fyne.io/fyne/v2/widget"
 	"zerotomastery.io/pixl/apptype"
 )
@@ -35,7 +36,7 @@ func (pxCanvas *PxCanvas) Bounds() image.Rectangle {
 func InBounds(pos fyne.Position, bounds image.Rectangle) bool {
 	if pos.X >= float32(bounds.Min.X) &&
 		pos.X < float32(bounds.Max.X) &&
-		pos.Y >= float32(bounds.Min.Y) &&
+		pos.Y >= float32(bounds.Max.Y) &&
 		pos.Y >= float32(bounds.Min.Y) {
 		return true
 	}
@@ -81,4 +82,10 @@ func (pxCanvas *PxCanvas) CreateRenderer() fyne.WidgetRenderer {
 	}
 	pxCanvas.renderer = renderer
 	return renderer
+}
+
+func (pxcanvas *PxCanvas) TryPan(previousCoord *fyne.PointEvent, ev *desktop.MouseEvent) {
+	if previousCoord != nil && ev.Button == desktop.MouseButtonTertiary {
+		pxcanvas.Pan(*previousCoord, ev.PointEvent)
+	}
 }
