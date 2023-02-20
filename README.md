@@ -6,4 +6,5 @@ Pixl is the revolutionary art editor build on top of Go
 2. run  go -v ./pixl on your Terminal
 
 2023 © Ishaaq Ziyan
+<br>
 © All Rghts Reserved. 
