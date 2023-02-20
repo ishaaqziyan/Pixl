@@ -38,12 +38,12 @@ func BuildNewMenu(app *AppInit) *fyne.MenuItem {
 				pixelWidth := 0
 				pixelHeight := 0
 				if widthEntry.Validate() != nil {
-					dialog.ShowError(errors.New("Invalid width"), app.PixlWindow)
+					dialog.ShowError(errors.New("invalid width"), app.PixlWindow)
 				} else {
 					pixelWidth, _ = strconv.Atoi(widthEntry.Text)
 				}
 				if heightEntry.Validate() != nil {
-					dialog.ShowError(errors.New("Invalid height"), app.PixlWindow)
+					dialog.ShowError(errors.New("invalid height"), app.PixlWindow)
 				} else {
 					pixelHeight, _ = strconv.Atoi(heightEntry.Text)
 				}
