@@ -11,6 +11,8 @@ Install [msys2](https://www.msys2.org/)
 once msys2 is installed, run `pacman -Syu`
 <br>Now open MSYS2 MSYS and run `pacman -Su`
 <br>run `pacman -S --needed base-devel mingw-w64-x86` and `pacman -S --needed base-devel mingw-w64-x86_64-toolchain`
+<br> Now open MSYS2 MinGw x64 and run `export PATH=$PATH:/c/Program\ Files/Go/Bin:~/Go/bin`
+<br> in MSyS2 MinGw locate your files within the CLI
 
 ### Instructions ###
 1. clone the repo
