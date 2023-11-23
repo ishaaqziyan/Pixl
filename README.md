@@ -1,5 +1,7 @@
 # Pixl
 Pixl is the revolutionary art editor built on top of Go
+![pixl](https://github.com/ishaaqziyan/Pixl/assets/98882071/90fab504-965b-4dae-bb82-cb8dd70b5e53)
+
 
 Prerequisites:
 <br>
