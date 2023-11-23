@@ -20,7 +20,7 @@ func main() {
 		SwatchSelected: 0,
 	}
 
-	pixlCanvasConfig := apptype.PXCanvasConfig{
+	pixlCanvasConfig := apptype.PxCanvasConfig{
 		DrawingArea:  fyne.NewSize(600, 600),
 		CanvasOffset: fyne.NewPos(0, 0),
 		PxRows:       10,
@@ -28,7 +28,7 @@ func main() {
 		PxSize:       30,
 	}
 
-	pixlCanvas := pxcanvas.NewPxcanvas(&state, pixlCanvasConfig)
+	pixlCanvas := pxcanvas.NewPxCanvas(&state, pixlCanvasConfig)
 
 	appInit := ui.AppInit{
 		PixlCanvas: pixlCanvas,

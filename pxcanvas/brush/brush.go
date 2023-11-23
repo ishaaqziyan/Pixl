@@ -13,7 +13,7 @@ const (
 	Pixel = iota
 )
 
-func Cursor(config apptype.PXCanvasConfig, brush apptype.BrushType, ev *desktop.MouseEvent, x int, y int) []fyne.CanvasObject {
+func Cursor(config apptype.PxCanvasConfig, brush apptype.BrushType, ev *desktop.MouseEvent, x int, y int) []fyne.CanvasObject {
 	var objects []fyne.CanvasObject
 	switch {
 	case brush == Pixel:
@@ -47,6 +47,7 @@ func Cursor(config apptype.PXCanvasConfig, brush apptype.BrushType, ev *desktop.
 	}
 	return objects
 }
+
 func TryBrush(appState *apptype.State, canvas apptype.Brushable, ev *desktop.MouseEvent) bool {
 	switch {
 	case appState.BrushType == Pixel:

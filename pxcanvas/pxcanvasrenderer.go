@@ -6,7 +6,7 @@ import (
 )
 
 type PxCanvasRenderer struct {
-	PxCanvas     *PxCanvas
+	pxCanvas     *PxCanvas
 	canvasImage  *canvas.Image
 	canvasBorder []canvas.Line
 	canvasCursor []fyne.CanvasObject
@@ -16,12 +16,12 @@ func (renderer *PxCanvasRenderer) SetCursor(objects []fyne.CanvasObject) {
 	renderer.canvasCursor = objects
 }
 
-// WidgetRenderer
+// WidgetRenderer interface implementation.
 func (renderer *PxCanvasRenderer) MinSize() fyne.Size {
-	return renderer.PxCanvas.DrawingArea
+	return renderer.pxCanvas.DrawingArea
 }
 
-// PxcanvasRenderer
+// WidgetRenderer interface implementation.
 func (renderer *PxCanvasRenderer) Objects() []fyne.CanvasObject {
 	objects := make([]fyne.CanvasObject, 0, 5)
 	for i := 0; i < len(renderer.canvasBorder); i++ {
@@ -32,38 +32,37 @@ func (renderer *PxCanvasRenderer) Objects() []fyne.CanvasObject {
 	return objects
 }
 
-// Destroy
+// WidgetRenderer interface implementation.
 func (renderer *PxCanvasRenderer) Destroy() {}
 
-// Main Layout
+// WidgetRenderer interface implementation.
 func (renderer *PxCanvasRenderer) Layout(size fyne.Size) {
 	renderer.LayoutCanvas(size)
 	renderer.LayoutBorder(size)
-
 }
 
-// Refresh fUnction
+// WidgetRenderer interface implementation.
 func (renderer *PxCanvasRenderer) Refresh() {
-	if renderer.PxCanvas.reloadImage {
-		renderer.canvasImage = canvas.NewImageFromImage(renderer.PxCanvas.PixelData)
+	if renderer.pxCanvas.reloadImage {
+		renderer.canvasImage = canvas.NewImageFromImage(renderer.pxCanvas.PixelData)
 		renderer.canvasImage.ScaleMode = canvas.ImageScalePixels
 		renderer.canvasImage.FillMode = canvas.ImageFillContain
-		renderer.PxCanvas.reloadImage = false
+		renderer.pxCanvas.reloadImage = false
 	}
-	renderer.Layout(renderer.PxCanvas.Size())
+	renderer.Layout(renderer.pxCanvas.Size())
 	canvas.Refresh(renderer.canvasImage)
 }
 
 func (renderer *PxCanvasRenderer) LayoutCanvas(size fyne.Size) {
-	imgPxWidth := renderer.PxCanvas.PxCols
-	imgPxHeight := renderer.PxCanvas.PxRows
-	pxSize := renderer.PxCanvas.PxSize
-	renderer.canvasImage.Move(fyne.NewPos(renderer.PxCanvas.CanvasOffset.X, renderer.PxCanvas.CanvasOffset.Y))
+	imgPxWidth := renderer.pxCanvas.PxCols
+	imgPxHeight := renderer.pxCanvas.PxRows
+	pxSize := renderer.pxCanvas.PxSize
+	renderer.canvasImage.Move(fyne.NewPos(renderer.pxCanvas.CanvasOffset.X, renderer.pxCanvas.CanvasOffset.Y))
 	renderer.canvasImage.Resize(fyne.NewSize(float32(imgPxWidth*pxSize), float32(imgPxHeight*pxSize)))
 }
 
 func (renderer *PxCanvasRenderer) LayoutBorder(size fyne.Size) {
-	offset := renderer.PxCanvas.CanvasOffset
+	offset := renderer.pxCanvas.CanvasOffset
 	imgHeight := renderer.canvasImage.Size().Height
 	imgWidth := renderer.canvasImage.Size().Width
 
@@ -82,5 +81,4 @@ func (renderer *PxCanvasRenderer) LayoutBorder(size fyne.Size) {
 	bottom := &renderer.canvasBorder[3]
 	bottom.Position1 = fyne.NewPos(offset.X, offset.Y+imgHeight)
 	bottom.Position2 = fyne.NewPos(offset.X+imgWidth, offset.Y+imgHeight)
-
 }
